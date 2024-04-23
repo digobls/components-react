@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import DefaultSimpleTable from '../components/defaultSimpleTable/DefaultSimpleTable';
 
+
 function UsersList() {
-    // const [users2, setUsers2] = useState([]);
+    const [dataLoading, setDataLoading] = useState(false);
     //
     // useEffect(() => {
     //     fetch('https://jsonplaceholder.typicode.com/users')
@@ -11,20 +12,20 @@ function UsersList() {
     // }, []);
 
     const listHeader = [
-        { key: 'id', label: 'ID', isVisible: true },
-        { key: 'name', label: 'Nome', isVisible: true, sortable: true, sortOrder: '' },
-        { key: 'phone', label: 'Telefone', isVisible: true, sortable: false, usePipe: true, isPhone: true },
-        { key: 'email', label: 'E-mail', isVisible: true, sortable: true, sortOrder: '' },
-        { key: 'documentNumber', label: 'Documento', isVisible: true, sortable: false, usePipe: true, isDocument: true },
-        { key: 'dateBirthday', label: 'Data de aniversário', isVisible: true, sortable: false, usePipe: true, isDate: true },
-        { key: 'remuneration', label: 'Remuneração', isVisible: true, sortable: false, usePipe: true, isCurrency: true },
-        { key: 'gender', label: 'Sexo', isVisible: true, sortable: false, usePipe: true, isJson: true, jsonKey: 'name' },
-        { key: 'tags', label: 'Tags', isVisible: true, sortable: false, usePipe: true, isArray: true },
-        { key: 'actions', label: 'Ações', isVisible: true, sortable: false,
+        { key: 'id', label: 'ID' },
+        { key: 'name', label: 'Nome', sortable: true, sortOrder: '' },
+        { key: 'phone', label: 'Telefone', sortable: false, usePipe: true, isPhone: true },
+        { key: 'email', label: 'E-mail', sortable: true, sortOrder: '' },
+        { key: 'documentNumber', label: 'Documento', sortable: false, usePipe: true, isDocument: true },
+        { key: 'dateBirthday', label: 'Data de aniversário', sortable: false, usePipe: true, isDate: true },
+        { key: 'remuneration', label: 'Remuneração', sortable: false, usePipe: true, isCurrency: true },
+        { key: 'gender', label: 'Sexo', sortable: false, usePipe: true, isJson: true, jsonKey: 'name' },
+        { key: 'tags', label: 'Tags', sortable: false, usePipe: true, isArray: true },
+        { key: 'actions', label: 'Ações', sortable: false,
             actions: [
                 {type: 'view', label: 'Visualizar', link: '/usuario/editar', pathname: ['id'], params: ['id', 'name'], demo: false},
                 {type: 'edit', label: 'Editar', link: '/usuario/editar', pathname: ['id'], params: ['id'], demo: false},
-                {type: 'delete', label: 'Excluir'},
+                {type: 'delete', label: 'Excluir', demo: false},
                 {icon: 'ri-file-pdf-2-line', label: 'Custom', externalLink: 'https://google.com.br', target: '_blank', demo: false}
             ]
         }
@@ -45,6 +46,12 @@ function UsersList() {
         { id: 12, name: 'João', email: 'joao@example.com', dateBirthday: '1991-07-22', remuneration: 14000, phone: '41999940776', documentNumber: '05226923970', tags: ["Angular", "Javascript", "CSS", "HTML"], gender: {'id': 2, 'name': "Feminino"}}
     ];
 
+    const dataPagination = {
+        currentPage: 1,
+        totalRecordsPerPage: 20,
+        totalRecords: 220
+    };
+
     // On change list sort
     const handleListSortChange = (data) => {
         console.log('handleListSortChange', data);
@@ -58,16 +65,24 @@ function UsersList() {
         console.log('handlePagination', data);
     }
 
+    const executeAction = () => {
+        console.log('teste', dataLoading);
+        setDataLoading(!dataLoading)
+    }
     return (
         <div className="container">
+            <button onClick={() => executeAction()}>Teste</button>
             <div>
                 <h2>Listagem de Usuários</h2>
                 <DefaultSimpleTable
-                    showDisplay={true}
-                    paginationInfo={true}
-                    showChangeTotal={true}
+                    loading={false}
                     initialListHeader={listHeader}
                     listData={users}
+                    initialConfigPagination={dataPagination}
+                    showDisplay={true}
+                    paginationInfo={true}
+                    maxSize={5}
+                    showChangeTotal={true}
                     onChangeListSort={handleListSortChange}
                     onDataAction={handleDataAction}
                     onChangePagination={handlePagination}

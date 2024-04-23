@@ -199,7 +199,7 @@ $bg-input: #eef2f7;
 
     .info-pagination {
       text-align: right;
-      margin: 0;
+      margin: 0 0 10px;
       line-height: 20px;
       height: 20px;
       font-size: 12px;
@@ -235,8 +235,8 @@ $bg-input: #eef2f7;
           }
 
           .content-sort {
-            i {
-              font-size: 14px;
+            svg {
+              margin-left: 4px;
             }
           }
 
