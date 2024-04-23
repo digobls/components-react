@@ -1,5 +1,7 @@
 import React from 'react';
 import TableExample from './TableExample';
+import SkeletonLoadingExample from './SkeletonLoadingExample';
+import DefaultButtonLoadingExample from './DefaultButtonLoadingExample';
 
 function Components() {
     return (
@@ -11,6 +13,10 @@ function Components() {
 
                 <div className="col-12 offset-bottom-20">
                     <TableExample></TableExample>
+
+                    <DefaultButtonLoadingExample></DefaultButtonLoadingExample>
+
+                    <SkeletonLoadingExample></SkeletonLoadingExample>
                 </div>
             </div>
         </div>

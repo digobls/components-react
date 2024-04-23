@@ -21,10 +21,6 @@ const DefaultSidebar = ({ onMenuStatusChange }) => {
         setShowMenu(false);
     };
 
-    const showAlert = () => {
-        // Implementação do alerta aqui
-    };
-
     return (
         <nav className={`default-sidebar ${isExpanded || showMenu ? 'expanded' : ''}`}
              onMouseEnter={expand}

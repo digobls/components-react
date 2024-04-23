@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import DefaultSimpleTable from '../components/defaultSimpleTable/DefaultSimpleTable';
+import DefaultSimpleTable from '../../components/defaultSimpleTable/DefaultSimpleTable';
 
 function TableExample() {
     const [dataLoading, setDataLoading] = useState(false);
-    //
+
     // useEffect(() => {
     //     fetch('https://jsonplaceholder.typicode.com/users')
     //         .then((response) => response.json())

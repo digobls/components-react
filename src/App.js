@@ -3,9 +3,9 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import './App.scss';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import {useState} from 'react';
-import DefaultNavbar from './components/default-navbar/DefaultNavbar';
-import DefaultSidebar from './components/default-sidebar/DefaultSidebar';
-import Components from './views/Components';
+import DefaultNavbar from './components/defaultNavbar/DefaultNavbar';
+import DefaultSidebar from './components/defaultSidebar/DefaultSidebar';
+import Components from './views/examples/Components';
 import NotFound from './views/NotFound';
 import ListUsers from './views/ListUsers';
 
@@ -13,7 +13,7 @@ function App() {
     const [menuIsOpen, setMenuIsOpen] = useState(true);
 
     const handleMenuStatusChange = (isExpanded) => {
-        setMenuIsOpen(isExpanded)
+        setMenuIsOpen(isExpanded);
     };
 
     return (
