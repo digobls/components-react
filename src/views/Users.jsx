@@ -70,23 +70,30 @@ function UsersList() {
         setDataLoading(!dataLoading)
     }
     return (
-        <div className="container">
-            <button onClick={() => executeAction()}>Teste</button>
-            <div>
-                <h2>Listagem de Usuários</h2>
-                <DefaultSimpleTable
-                    loading={false}
-                    initialListHeader={listHeader}
-                    listData={users}
-                    initialConfigPagination={dataPagination}
-                    showDisplay={true}
-                    paginationInfo={true}
-                    maxSize={5}
-                    showChangeTotal={true}
-                    onChangeListSort={handleListSortChange}
-                    onDataAction={handleDataAction}
-                    onChangePagination={handlePagination}
-                />
+        <div className="col-12 box-rounded-white offset-top-20">
+            <div className="row">
+                <div className="col-12">
+                    <div className="container-title-description">
+                        <h4>Tabela</h4>
+                        <p>Configurações aplicadas da tabela</p>
+                    </div>
+                </div>
+
+                <div className="col-12">
+                    <DefaultSimpleTable
+                        loading={false}
+                        initialListHeader={listHeader}
+                        listData={users}
+                        initialConfigPagination={dataPagination}
+                        showDisplay={true}
+                        paginationInfo={true}
+                        maxSize={5}
+                        showChangeTotal={true}
+                        onChangeListSort={handleListSortChange}
+                        onDataAction={handleDataAction}
+                        onChangePagination={handlePagination}
+                    />
+                </div>
             </div>
         </div>
     );
