@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import DefaultSimpleTable from '../components/defaultSimpleTable/DefaultSimpleTable';
 
-
-function UsersList() {
+function TableExample() {
     const [dataLoading, setDataLoading] = useState(false);
     //
     // useEffect(() => {
@@ -99,4 +98,4 @@ function UsersList() {
     );
 }
 
-export default UsersList;
+export default TableExample;

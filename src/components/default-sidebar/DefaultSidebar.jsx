@@ -57,12 +57,12 @@ const DefaultSidebar = ({ onMenuStatusChange }) => {
                 {/*    </Link>*/}
                 {/*</li>*/}
 
-                {/*<li>*/}
-                {/*    <Link to="/usuario" title="Lista de usuário">*/}
-                {/*        <RiUser3Line size="14" />*/}
-                {/*        <span>Lista de usuário</span>*/}
-                {/*    </Link>*/}
-                {/*</li>*/}
+                <li>
+                    <Link to="/usuarios" title="Lista de usuário">
+                        <RiUser3Line size="14" />
+                        <span>Lista de usuário</span>
+                    </Link>
+                </li>
                 {/*<li>*/}
                 {/*    <Link to="/usuario/cadastro" title="Cadastro de usuário">*/}
                 {/*        <RiUser3Line size="14" />*/}
