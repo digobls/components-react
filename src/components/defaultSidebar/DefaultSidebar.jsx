@@ -46,13 +46,12 @@ const DefaultSidebar = ({ onMenuStatusChange }) => {
                         <span>Componentes</span>
                     </Link>
                 </li>
-                {/*<li>*/}
-                {/*    <Link to="/form/simple" title="Elementos de formulário">*/}
-                {/*        <RiInputField size="14" />*/}
-                {/*        <span>Formulário</span>*/}
-                {/*    </Link>*/}
-                {/*</li>*/}
-
+                <li>
+                    <Link to="/form" title="Elementos de formulário">
+                        <RiInputField size="14" />
+                        <span>Formulário</span>
+                    </Link>
+                </li>
                 <li>
                     <Link to="/usuarios" title="Lista de usuário">
                         <RiUser3Line size="14" />

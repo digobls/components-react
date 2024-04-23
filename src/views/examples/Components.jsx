@@ -2,6 +2,7 @@ import React from 'react';
 import TableExample from './TableExample';
 import SkeletonLoadingExample from './SkeletonLoadingExample';
 import DefaultButtonLoadingExample from './DefaultButtonLoadingExample';
+import DefaultEmptyBoxExample from './DefaultEmptyBoxExample';
 
 function Components() {
     return (
@@ -15,6 +16,8 @@ function Components() {
                     <TableExample></TableExample>
 
                     <DefaultButtonLoadingExample></DefaultButtonLoadingExample>
+
+                    <DefaultEmptyBoxExample></DefaultEmptyBoxExample>
 
                     <SkeletonLoadingExample></SkeletonLoadingExample>
                 </div>

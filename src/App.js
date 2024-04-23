@@ -8,6 +8,7 @@ import DefaultSidebar from './components/defaultSidebar/DefaultSidebar';
 import Components from './views/examples/Components';
 import NotFound from './views/NotFound';
 import ListUsers from './views/ListUsers';
+import Form from './views/Form';
 
 function App() {
     const [menuIsOpen, setMenuIsOpen] = useState(true);
@@ -25,7 +26,9 @@ function App() {
                 <div className={`container-data ${menuIsOpen ? 'menu-open' : 'menu-close'}`}>
                     <div className="container">
                         <Routes>
+                            Formulário
                             <Route path="/componentes" element={<Components />} />
+                            <Route path="/form" element={<Form />} />
                             <Route path="/usuarios" element={<ListUsers />} />
                             <Route path="*" element={<NotFound />} />
                         </Routes>
