@@ -23,7 +23,8 @@ function Form() {
         setFormValue('documentNumber', '60686622090');
         setFormValue('date', '1991-04-10');
         setFormValue('dateMask', '22/07/1991');
-        setFormValue('money', '1500');
+        setFormValue('money', '150000');
+        setFormValue('test', '22/07/1991');
 
         // Checks the form after adding values to remove error warnings
         await triggerForm();
@@ -35,6 +36,7 @@ function Form() {
         if (isValidForm) {
             console.log('Valor do formulário ->', getFormValues());
         }
+        console.log('formErrors', formErrors);
     };
 
     // Reset data form

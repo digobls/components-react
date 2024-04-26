@@ -65,7 +65,6 @@ export const validateDocument = (value) => {
             }
         }
     } else if (new RegExp('[0-9]{11}').test(cpf_cnpj)) {
-        console.log('CPF')
         if (
             cpf_cnpj !== '00000000000' &&
             cpf_cnpj !== '11111111111' &&

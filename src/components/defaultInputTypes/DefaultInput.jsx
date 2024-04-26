@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import '../../assets/styles/defaultInputType.scss';
 import {validateEmail, validateDocument, validateFullName} from './Validations';
 import {useHookFormMask} from 'use-mask-input';
@@ -17,9 +17,6 @@ const DefaultInput = ({
                           customValidator
                       }) => {
     const registerWithMask = useHookFormMask(register);
-    // useEffect(() => {
-    //     console.log('useEffect mask', mask)
-    // }, [mask]);
 
     // Check extras validations
     const checkExtraValidations = (value) => {
@@ -52,20 +49,32 @@ const DefaultInput = ({
         return null;
     };
 
+    // Get mask by type or set custom
     function getMask(type) {
         switch (type) {
             case 'cpf':
-                return ['###.###.###-##'];
+                return ['999.999.999-99'];
             case 'cnpj':
-                return ['##.###.###.###-##'];
+                return ['99.999.999.999-99'];
             case 'document':
-                return ['###.###.###-##', '##.###.###.###-##']
+                return ['999.999.999-99', '99.999.999.999-99']
             case 'phone':
-                return ['(##) ####-####', '(##) #####-####'];
+                return ['(99) 9999-9999', '(99) 99999-9999'];
             case 'currency':
-                return ['R$ {1}'];
+                return [
+                    'R$ 9',
+                    'R$ 99',
+                    'R$ 9,99',
+                    'R$ 99,99',
+                    'R$ 999,99',
+                    'R$ 9.999,99',
+                    'R$ 99.999,99',
+                    'R$ 999.999,99',
+                    'R$ 9.999.999,99'];
             case 'date':
-                return ['##/##/####'];
+                return ['99/99/9999'];
+            case 'custom':
+                return mask
             default:
                 return null;
         }
@@ -75,19 +84,23 @@ const DefaultInput = ({
         <div className="default-input-type">
             <label htmlFor={id} className="default-label-input">
                 {label}
-                <span className="required-alert">*</span>
+                {isRequired && (<span className="required-alert">*</span>)}
             </label>
 
             {mask ? (
                 <input
-                    {...registerWithMask(id,
-                        getMask(mask),
-                        {required: isRequired ? invalidMsg : false, validate: checkExtraValidations})}
                     id={id}
                     type="text"
                     placeholder={placeholder}
                     readOnly={disable}
                     required={isRequired}
+                    {...registerWithMask(id,
+                        getMask(mask),
+                        {
+                            required: isRequired ? invalidMsg : false,
+                            validate: checkExtraValidations
+                        })
+                    }
                     className="custom-default-input"/>
             ) : (
                 <input
