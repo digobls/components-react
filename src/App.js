@@ -9,6 +9,7 @@ import Components from './views/examples/Components';
 import NotFound from './views/NotFound';
 import ListUsers from './views/ListUsers';
 import Form from './views/Form';
+import TesteForm from "./views/TesteForm";
 
 function App() {
     const [menuIsOpen, setMenuIsOpen] = useState(true);
@@ -29,6 +30,7 @@ function App() {
                             Formulário
                             <Route path="/componentes" element={<Components />} />
                             <Route path="/form" element={<Form />} />
+                            <Route path="/teste" element={<TesteForm />} />
                             <Route path="/usuarios" element={<ListUsers />} />
                             <Route path="*" element={<NotFound />} />
                         </Routes>

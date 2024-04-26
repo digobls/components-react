@@ -97,3 +97,19 @@ body {
   color: #58535e;
   margin-bottom: 4px;
 }
+
+.content-buttons {
+  text-align: right;
+
+  .simple-btn {
+    background: transparent;
+    border: 1px solid #2f23d6;
+    color: #2f23d6;
+    cursor: pointer;
+    min-width: 120px;
+    height: 38px;
+    display: inline-block;
+    margin-left: 14px;
+    border-radius: 6px;
+  }
+}
