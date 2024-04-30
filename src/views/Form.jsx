@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
 import {useForm} from 'react-hook-form';
-import DefaultInput from '../components/defaultInputTypes/DefaultInput';
-import InputTag from "../components/defaultInputTypes/InputTag";
-import InputRadio from "../components/defaultInputTypes/InputRadio";
-import DefaultTextarea from "../components/defaultInputTypes/DefaultTextarea";
-import DefaultCheckbox from "../components/defaultInputTypes/DefaultCheckbox";
+import TypeDefault from '../components/defaultInputTypes/TypeDefault';
+import TypeTag from '../components/defaultInputTypes/TypeTag';
+import TypeRadio from '../components/defaultInputTypes/TypeRadio';
+import TypeTextarea from '../components/defaultInputTypes/TypeTextarea';
+import TypeCheckbox from '../components/defaultInputTypes/TypeCheckbox';
+import TypeMask from '../components/defaultInputTypes/TypeMask';
 
 function Form() {
     const {
@@ -22,9 +23,9 @@ function Form() {
     const [disableForm, setDisableForm] = useState(false);
 
     const listTypeContact = [
-        {id: 1, name: 'E-mail'},
-        {id: 2, name: 'Telefone'},
-        {id: 3, name: 'Todos'},
+        {id: 1, name: 'E-mail', checked: false},
+        {id: 2, name: 'Telefone', checked: false},
+        {id: 3, name: 'Todos', checked: false},
     ];
 
     const setDataForm = async (e) => {
@@ -40,6 +41,7 @@ function Form() {
         setFormValue('radioList', {id: 1, name: 'E-mail'});
         setFormValue('switch', true);
         setFormValue('checkbox', true);
+        setFormValue('checkboxList', [{id: 1, name: 'E-mail', checked: true}, {id: 2, name: 'Telefone', checked: true}]);
         setFormValue('description', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.');
 
         // Checks the form after adding values to remove error warnings
@@ -52,8 +54,6 @@ function Form() {
         if (isValidForm) {
             console.log('Valor do formulário ->', getFormValues());
         }
-        console.log('Valor do formulário ->', getFormValues());
-        console.log('formErrors', formErrors);
     };
 
     // Reset data form
@@ -90,7 +90,7 @@ function Form() {
 
                 <form className="row">
                     <div className="col-12 col-md-6 offset-top-10">
-                        <DefaultInput
+                        <TypeDefault
                             id={'name'}
                             type={'text'}
                             label={'Nome'}
@@ -100,10 +100,10 @@ function Form() {
                             register={formData}
                             errors={formErrors}
                             customValidator={{fullName: true, minLength: 5}}>
-                        </DefaultInput>
+                        </TypeDefault>
                     </div>
                     <div className="col-12 col-md-6 offset-top-10">
-                        <DefaultInput
+                        <TypeDefault
                             id={'email'}
                             type={'text'}
                             label={'E-mail'}
@@ -113,10 +113,10 @@ function Form() {
                             register={formData}
                             errors={formErrors}
                             customValidator={{email: true}}>
-                        </DefaultInput>
+                        </TypeDefault>
                     </div>
                     <div className="col-12 col-md-6 offset-top-10">
-                        <DefaultInput
+                        <TypeMask
                             id={'phone'}
                             type={'text'}
                             label={'Telefone'}
@@ -126,10 +126,10 @@ function Form() {
                             isRequired={true}
                             register={formData}
                             errors={formErrors}>
-                        </DefaultInput>
+                        </TypeMask>
                     </div>
                     <div className="col-12 col-md-6 offset-top-10">
-                        <DefaultInput
+                        <TypeMask
                             id={'documentNumber'}
                             type={'text'}
                             label={'CPF ou CNPJ'}
@@ -140,10 +140,10 @@ function Form() {
                             register={formData}
                             errors={formErrors}
                             customValidator={{document: true}}>
-                        </DefaultInput>
+                        </TypeMask>
                     </div>
                     <div className="col-12 col-md-6 offset-top-10">
-                        <DefaultInput
+                        <TypeMask
                             id={'dateMask'}
                             type={'text'}
                             label={'Data'}
@@ -153,10 +153,10 @@ function Form() {
                             isRequired={true}
                             register={formData}
                             errors={formErrors}>
-                        </DefaultInput>
+                        </TypeMask>
                     </div>
                     <div className="col-12 col-md-6 offset-top-10">
-                        <DefaultInput
+                        <TypeDefault
                             id={'date'}
                             type={'date'}
                             label={'Data'}
@@ -165,10 +165,10 @@ function Form() {
                             isRequired={true}
                             register={formData}
                             errors={formErrors}>
-                        </DefaultInput>
+                        </TypeDefault>
                     </div>
                     <div className="col-12 col-md-6 offset-top-10">
-                        <DefaultInput
+                        <TypeMask
                             id={'money'}
                             type={'text'}
                             label={'Dinheiro'}
@@ -178,10 +178,10 @@ function Form() {
                             isRequired={true}
                             register={formData}
                             errors={formErrors}>
-                        </DefaultInput>
+                        </TypeMask>
                     </div>
                     <div className="col-12 col-md-6 offset-top-10">
-                        <InputTag
+                        <TypeTag
                             id={'tags'}
                             type={'text'}
                             label={'Tags'}
@@ -192,10 +192,10 @@ function Form() {
                             errors={formErrors}
                             watch={watchForm}
                             setValue={setFormValue}>
-                        </InputTag>
+                        </TypeTag>
                     </div>
                     <div className="col-12 col-md-12 offset-top-10">
-                        <DefaultTextarea
+                        <TypeTextarea
                             id={'description'}
                             type={'textarea'}
                             label={'Descrição'}
@@ -204,21 +204,23 @@ function Form() {
                             isRequired={true}
                             register={formData}
                             errors={formErrors}
-                        ></DefaultTextarea>
+                        ></TypeTextarea>
                     </div>
                     <div className="col-12 col-md-12 offset-top-10">
-                        <DefaultCheckbox
+                        <TypeCheckbox
                             id={'switch'}
                             type={'switch'}
                             label={'Switch'}
                             disable={disableForm}
                             isRequired={false}
                             register={formData}
-                            errors={formErrors}>
-                        </DefaultCheckbox>
+                            errors={formErrors}
+                            watch={watchForm}
+                            setValue={setFormValue}>
+                        </TypeCheckbox>
                     </div>
                     <div className="col-12 col-md-12 offset-top-10">
-                        <DefaultCheckbox
+                        <TypeCheckbox
                             id={'checkbox'}
                             type={'checkbox'}
                             label={'Checkbox'}
@@ -226,14 +228,31 @@ function Form() {
                             subCheckboxLabel={'termos de uso'}
                             labelLink={'https://google.com.br'}
                             disable={disableForm}
-                            isRequired={false}
+                            isRequired={true}
                             displayInline={false}
                             register={formData}
-                            errors={formErrors}>
-                        </DefaultCheckbox>
+                            errors={formErrors}
+                            watch={watchForm}
+                            setValue={setFormValue}>
+                        </TypeCheckbox>
                     </div>
-                    <div className="col-12 col-md-12 offset-top-10">
-                        <InputRadio
+                    <div className="col-12 col-md-12 offset-top-20">
+                        <TypeCheckbox
+                            id={'checkboxList'}
+                            type={'checkbox'}
+                            label={'Checkbox list'}
+                            disable={disableForm}
+                            checkItems={listTypeContact}
+                            isRequired={true}
+                            displayInline={true}
+                            register={formData}
+                            errors={formErrors}
+                            watch={watchForm}
+                            setValue={setFormValue}>
+                        </TypeCheckbox>
+                    </div>
+                    <div className="col-12 col-md-12 offset-top-20">
+                        <TypeRadio
                             id={'radio'}
                             type={'radio'}
                             label={'Radio lista horizontal'}
@@ -245,10 +264,10 @@ function Form() {
                             errors={formErrors}
                             watch={watchForm}
                             setValue={setFormValue}
-                        ></InputRadio>
+                        ></TypeRadio>
                     </div>
                     <div className="col-12 col-md-12 offset-top-20">
-                        <InputRadio
+                        <TypeRadio
                             id={'radioList'}
                             type={'radio'}
                             label={'Radio lista horizontal'}
@@ -261,7 +280,7 @@ function Form() {
                             errors={formErrors}
                             watch={watchForm}
                             setValue={setFormValue}
-                        ></InputRadio>
+                        ></TypeRadio>
                     </div>
                 </form>
             </div>

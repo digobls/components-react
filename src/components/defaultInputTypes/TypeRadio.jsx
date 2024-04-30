@@ -2,20 +2,20 @@ import React, {useCallback, useEffect, useState} from 'react';
 import InputError from './InputError';
 import DefaultLabel from './DefaultLabel';
 
-const InputRadio = ({
-                        id,
-                        label,
-                        register,
-                        errors,
-                        radioItems,
-                        bindValueRadio,
-                        setValue,
-                        displayInline,
-                        watch,
-                        disable,
-                        invalidMsg = 'Campo obrigatório!',
-                        isRequired = true
-                    }) => {
+const TypeRadio = ({
+                       id = '',
+                       label = '',
+                       radioItems = [],
+                       bindValueRadio = '',
+                       displayInline = false,
+                       disable = false,
+                       invalidMsg = 'Campo obrigatório!',
+                       isRequired = true,
+                       register,
+                       errors,
+                       setValue,
+                       watch
+                   }) => {
     const [radioValue, setRadioValue] = useState('');
 
     useEffect(() => {
@@ -77,4 +77,4 @@ const InputRadio = ({
     );
 };
 
-export default InputRadio;
+export default TypeRadio;

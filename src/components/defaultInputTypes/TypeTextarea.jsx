@@ -3,17 +3,16 @@ import '../../assets/styles/defaultInputType.scss';
 import DefaultLabel from './DefaultLabel';
 import InputError from './InputError';
 
-const DefaultTextarea = ({
-                             id = '',
-                             label = '',
-                             isRequired = false,
-                             disable = false,
-                             placeholder = '',
-                             register,
-                             errors,
-                             invalidMsg = 'Campo obrigatório!'
-                         }) => {
-
+const TypeTextarea = ({
+                          id = '',
+                          label = '',
+                          isRequired = false,
+                          disable = false,
+                          placeholder = '',
+                          invalidMsg = 'Campo obrigatório!',
+                          register,
+                          errors
+                      }) => {
     return (
         <div className="default-input-type">
             <DefaultLabel id={id} label={label} isRequired={isRequired}/>
@@ -33,4 +32,4 @@ const DefaultTextarea = ({
     );
 };
 
-export default DefaultTextarea;
+export default TypeTextarea;

@@ -3,19 +3,19 @@ import {RiCloseLine} from '@remixicon/react';
 import DefaultLabel from './DefaultLabel';
 import InputError from "./InputError";
 
-const InputTag = ({
-                      id = '',
-                      label = '',
-                      isRequired = false,
-                      disable = false,
-                      placeholder = '',
-                      showRemoveTag = true,
-                      register,
-                      errors,
-                      invalidMsg = 'Campo obrigatório!',
-                      setValue,
-                      watch
-                  }) => {
+const TypeTag = ({
+                     id = '',
+                     label = '',
+                     isRequired = false,
+                     disable = false,
+                     placeholder = '',
+                     showRemoveTag = true,
+                     invalidMsg = 'Campo obrigatório!',
+                     register,
+                     errors,
+                     setValue,
+                     watch
+                 }) => {
     const [tag, setTag] = useState('');
     const [listTags, setListTags] = useState([]);
 
@@ -100,4 +100,4 @@ const InputTag = ({
     );
 };
 
-export default InputTag;
+export default TypeTag;
