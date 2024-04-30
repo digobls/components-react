@@ -1,6 +1,9 @@
 import React, {useState} from 'react';
 import {useForm} from 'react-hook-form';
 import DefaultInput from '../components/defaultInputTypes/DefaultInput';
+import InputTag from "../components/defaultInputTypes/InputTag";
+import InputRadio from "../components/defaultInputTypes/InputRadio";
+import DefaultTextarea from "../components/defaultInputTypes/DefaultTextarea";
 
 function Form() {
     const {
@@ -8,13 +11,20 @@ function Form() {
         setValue: setFormValue,
         handleSubmit: handleSubmitForm,
         watch: watchForm,
+        control: controlUser,
         getValues: getFormValues,
         trigger: triggerForm,
         reset: resetDataForm,
         clearErrors: clearFormErrors,
         formState: {isValid: formValid, errors: formErrors},
-    } = useForm({ mode: 'all' }); // Set formState mode to 'all' for immediate validation
+    } = useForm({mode: 'all'}); // Set formState mode to 'all' for immediate validation
     const [disableForm, setDisableForm] = useState(false);
+
+    const listTypeContact = [
+        {id: 1, name: 'E-mail'},
+        {id: 2, name: 'Telefone'},
+        {id: 3, name: 'Todos'},
+    ];
 
     const setDataForm = async (e) => {
         setFormValue('name', 'Rodrigo Pereira');
@@ -24,7 +34,9 @@ function Form() {
         setFormValue('date', '1991-04-10');
         setFormValue('dateMask', '22/07/1991');
         setFormValue('money', '150000');
-        setFormValue('test', '22/07/1991');
+        setFormValue('tags', ['tag1', 'rodrigo', 'terceira']);
+        setFormValue('radio', {id: 2, name: 'Telefone'});
+        setFormValue('radioList', {id: 1, name: 'E-mail'});
 
         // Checks the form after adding values to remove error warnings
         await triggerForm();
@@ -36,6 +48,7 @@ function Form() {
         if (isValidForm) {
             console.log('Valor do formulário ->', getFormValues());
         }
+        console.log('Valor do formulário ->', getFormValues());
         console.log('formErrors', formErrors);
     };
 
@@ -162,6 +175,63 @@ function Form() {
                             register={formData}
                             errors={formErrors}>
                         </DefaultInput>
+                    </div>
+                    <div className="col-12 col-md-6 offset-top-10">
+                        <InputTag
+                            id={'tags'}
+                            type={'text'}
+                            label={'Tags'}
+                            placeholder={'Preencha as tags'}
+                            disable={disableForm}
+                            isRequired={true}
+                            register={formData}
+                            errors={formErrors}
+                            watch={watchForm}
+                            setValue={setFormValue}>
+                        </InputTag>
+                    </div>
+                    <div className="col-12 col-md-12 offset-top-10">
+                        <DefaultTextarea
+                            id={'description'}
+                            type={'textarea'}
+                            label={'Descrição'}
+                            placeholder={'Descrição'}
+                            disable={disableForm}
+                            isRequired={true}
+                            register={formData}
+                            errors={formErrors}
+                        ></DefaultTextarea>
+                    </div>
+                    <div className="col-12 col-md-12 offset-top-20">
+                        <InputRadio
+                            id={'radio'}
+                            type={'radio'}
+                            label={'Radio lista horizontal'}
+                            radioItems={listTypeContact}
+                            disable={disableForm}
+                            displayInline={true}
+                            isRequired={true}
+                            register={formData}
+                            errors={formErrors}
+                            watch={watchForm}
+                            setValue={setFormValue}
+                        ></InputRadio>
+                    </div>
+                    <div className="col-12 col-md-12 offset-top-20">
+                        <InputRadio
+                            id={'radioList'}
+                            type={'radio'}
+                            label={'Radio lista horizontal'}
+                            radioItems={listTypeContact}
+                            disable={disableForm}
+                            displayInline={false}
+                            isRequired={true}
+                            bindValueRadio={'id'}
+                            register={formData}
+                            errors={formErrors}
+                            watch={watchForm}
+                            setValue={setFormValue}
+                        ></InputRadio>
                     </div>
                 </form>
             </div>

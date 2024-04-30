@@ -1,91 +1,82 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import '../../assets/styles/defaultInputType.scss';
 import {validateEmail, validateDocument, validateFullName} from './Validations';
 import {useHookFormMask} from 'use-mask-input';
+import DefaultLabel from './DefaultLabel';
+import InputError from './InputError';
 
 const DefaultInput = ({
                           type = 'text',
                           id = '',
                           label = '',
+                          isRequired = false,
+
                           disable = false,
                           placeholder = '',
                           mask = '',
-                          isRequired = false,
                           register,
                           errors,
                           invalidMsg = 'Campo obrigatório!',
                           customValidator
                       }) => {
     const registerWithMask = useHookFormMask(register);
-
-    // Check extras validations
-    const checkExtraValidations = (value) => {
+    const checkExtraValidations = useCallback((value) => {
         if (customValidator) {
             const listKeys = Object.keys(customValidator);
-            let errorMessage = null;
-            listKeys.forEach((key) => {
-                if (!errorMessage) {
-                    switch (key) {
-                        case 'email':
-                            errorMessage = validateEmail(value) ? 'E-mail inválido!' : '';
-                            break;
-                        case 'document':
-                            errorMessage = validateDocument(value) ? 'Documento inválido!' : '';
-                            break;
-                        case 'fullName':
-                            errorMessage = validateFullName(value) ? 'Nome inválido!' : '';
-                            break;
-                        case 'maxLength':
-                            errorMessage = value?.length > customValidator[key] ? `O campo deve ter no máximo ${customValidator[key]} caracteres.` : '';
-                            break;
-                        case 'minLength':
-                            errorMessage = value?.length < customValidator[key] ? `O campo deve ter no mínimo ${customValidator[key]} caracteres.` : '';
-                            break;
-                    }
+            for (let i = 0; i < listKeys.length; i++) {
+                const key = listKeys[i];
+                switch (key) {
+                    case 'email':
+                        if (validateEmail(value)) return 'E-mail inválido!';
+                        break;
+                    case 'document':
+                        if (validateDocument(value)) return 'Documento inválido!';
+                        break;
+                    case 'fullName':
+                        if (validateFullName(value)) return 'Nome inválido!';
+                        break;
+                    case 'maxLength':
+                        if (value?.length > customValidator[key]) return `O campo deve ter no máximo ${customValidator[key]} caracteres.`;
+                        break;
+                    case 'minLength':
+                        if (value?.length < customValidator[key]) return `O campo deve ter no mínimo ${customValidator[key]} caracteres.`;
+                        break;
+                    default:
+                        break;
                 }
-            });
-            return errorMessage || true;
+            }
         }
-        return null;
-    };
+        return true;
+    }, [customValidator]);
+
 
     // Get mask by type or set custom
     function getMask(type) {
-        switch (type) {
-            case 'cpf':
-                return ['999.999.999-99'];
-            case 'cnpj':
-                return ['99.999.999.999-99'];
-            case 'document':
-                return ['999.999.999-99', '99.999.999.999-99']
-            case 'phone':
-                return ['(99) 9999-9999', '(99) 99999-9999'];
-            case 'currency':
-                return [
-                    'R$ 9',
-                    'R$ 99',
-                    'R$ 9,99',
-                    'R$ 99,99',
-                    'R$ 999,99',
-                    'R$ 9.999,99',
-                    'R$ 99.999,99',
-                    'R$ 999.999,99',
-                    'R$ 9.999.999,99'];
-            case 'date':
-                return ['99/99/9999'];
-            case 'custom':
-                return mask
-            default:
-                return null;
-        }
+        const maskMap = {
+            'cpf': ['999.999.999-99'],
+            'cnpj': ['99.999.999.999-99'],
+            'document': ['999.999.999-99', '99.999.999.999-99'],
+            'phone': ['(99) 9999-9999', '(99) 99999-9999'],
+            'currency': [
+                'R$ 9',
+                'R$ 99',
+                'R$ 9,99',
+                'R$ 99,99',
+                'R$ 999,99',
+                'R$ 9.999,99',
+                'R$ 99.999,99',
+                'R$ 999.999,99',
+                'R$ 9.999.999,99'
+            ],
+            'date': ['99/99/9999'],
+            'custom': [mask]
+        };
+        return maskMap[type] || null;
     }
 
     return (
         <div className="default-input-type">
-            <label htmlFor={id} className="default-label-input">
-                {label}
-                {isRequired && (<span className="required-alert">*</span>)}
-            </label>
+           <DefaultLabel id={id} label={label} isRequired={isRequired} />
 
             {mask ? (
                 <input
@@ -116,7 +107,7 @@ const DefaultInput = ({
                     className="custom-default-input"/>
             )}
 
-            {errors && errors[id] && <span className="invalid-feedback">{errors[id].message}</span>}
+            <InputError id={id} errors={errors} />
         </div>
     );
 };
