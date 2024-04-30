@@ -1,6 +1,6 @@
 import React from 'react';
 
-const InputError = ({id, errors}) => {
+const ErrorMessage = ({id, errors}) => {
     return (
         <>
             {errors && errors[id] && <span className="invalid-feedback">{errors[id].message}</span>}
@@ -8,4 +8,4 @@ const InputError = ({id, errors}) => {
     );
 };
 
-export default InputError;
+export default ErrorMessage;

@@ -3,7 +3,7 @@ import '../../assets/styles/defaultInputType.scss';
 import {validateDocument} from './Validations';
 import {useHookFormMask} from 'use-mask-input';
 import DefaultLabel from './DefaultLabel';
-import InputError from './InputError';
+import ErrorMessage from './ErrorMessage';
 
 const TypeMask = ({
                       id = '',
@@ -84,7 +84,7 @@ const TypeMask = ({
                 }
                 className="custom-default-input"/>
 
-            <InputError id={id} errors={errors}/>
+            <ErrorMessage id={id} errors={errors}/>
         </div>
     );
 };

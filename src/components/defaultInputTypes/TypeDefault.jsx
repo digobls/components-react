@@ -2,7 +2,7 @@ import React, {useCallback} from 'react';
 import '../../assets/styles/defaultInputType.scss';
 import {validateEmail, validateDocument, validateFullName} from './Validations';
 import DefaultLabel from './DefaultLabel';
-import InputError from './InputError';
+import ErrorMessage from './ErrorMessage';
 
 const TypeDefault = ({
                          type = 'text',
@@ -61,7 +61,7 @@ const TypeDefault = ({
                 })}
                 className="custom-default-input"/>
 
-            <InputError id={id} errors={errors}/>
+            <ErrorMessage id={id} errors={errors}/>
         </div>
     );
 };

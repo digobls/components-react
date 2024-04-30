@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import InputError from './InputError';
+import ErrorMessage from './ErrorMessage';
 import DefaultLabel from './DefaultLabel';
 
 const TypeRadio = ({
@@ -72,7 +72,7 @@ const TypeRadio = ({
                 </div>
             </div>
 
-            <InputError id={id} errors={errors}/>
+            <ErrorMessage id={id} errors={errors}/>
         </div>
     );
 };

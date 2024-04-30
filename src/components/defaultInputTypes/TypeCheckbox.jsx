@@ -1,7 +1,7 @@
 import React, {useEffect, useMemo, useState} from 'react';
 import '../../assets/styles/defaultInputType.scss';
 import DefaultLabel from './DefaultLabel';
-import InputError from './InputError';
+import ErrorMessage from './ErrorMessage';
 
 const TypeCheckbox = ({
                              type = 'text',
@@ -112,7 +112,7 @@ const TypeCheckbox = ({
                 </div>
             )}
 
-            <InputError id={id} errors={errors}/>
+            <ErrorMessage id={id} errors={errors}/>
         </div>
     );
 };

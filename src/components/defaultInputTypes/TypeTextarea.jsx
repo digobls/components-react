@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../assets/styles/defaultInputType.scss';
 import DefaultLabel from './DefaultLabel';
-import InputError from './InputError';
+import ErrorMessage from './ErrorMessage';
 
 const TypeTextarea = ({
                           id = '',
@@ -27,7 +27,7 @@ const TypeTextarea = ({
                 })}
                 className="custom-default-textarea"/>
 
-            <InputError id={id} errors={errors}/>
+            <ErrorMessage id={id} errors={errors}/>
         </div>
     );
 };

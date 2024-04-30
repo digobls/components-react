@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {RiCloseLine} from '@remixicon/react';
 import DefaultLabel from './DefaultLabel';
-import InputError from "./InputError";
+import ErrorMessage from "./ErrorMessage";
 
 const TypeTag = ({
                      id = '',
@@ -95,7 +95,7 @@ const TypeTag = ({
                 {disable && !listTags.length && (<span className="placeholder">{placeholder}</span>)}
             </div>
 
-            <InputError id={id} errors={errors}/>
+            <ErrorMessage id={id} errors={errors}/>
         </div>
     );
 };
