@@ -4,6 +4,7 @@ import DefaultInput from '../components/defaultInputTypes/DefaultInput';
 import InputTag from "../components/defaultInputTypes/InputTag";
 import InputRadio from "../components/defaultInputTypes/InputRadio";
 import DefaultTextarea from "../components/defaultInputTypes/DefaultTextarea";
+import DefaultCheckbox from "../components/defaultInputTypes/DefaultCheckbox";
 
 function Form() {
     const {
@@ -37,6 +38,9 @@ function Form() {
         setFormValue('tags', ['tag1', 'rodrigo', 'terceira']);
         setFormValue('radio', {id: 2, name: 'Telefone'});
         setFormValue('radioList', {id: 1, name: 'E-mail'});
+        setFormValue('switch', true);
+        setFormValue('checkbox', true);
+        setFormValue('description', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.');
 
         // Checks the form after adding values to remove error warnings
         await triggerForm();
@@ -202,7 +206,33 @@ function Form() {
                             errors={formErrors}
                         ></DefaultTextarea>
                     </div>
-                    <div className="col-12 col-md-12 offset-top-20">
+                    <div className="col-12 col-md-12 offset-top-10">
+                        <DefaultCheckbox
+                            id={'switch'}
+                            type={'switch'}
+                            label={'Switch'}
+                            disable={disableForm}
+                            isRequired={false}
+                            register={formData}
+                            errors={formErrors}>
+                        </DefaultCheckbox>
+                    </div>
+                    <div className="col-12 col-md-12 offset-top-10">
+                        <DefaultCheckbox
+                            id={'checkbox'}
+                            type={'checkbox'}
+                            label={'Checkbox'}
+                            labelCheckbox={'Confirmar'}
+                            subCheckboxLabel={'termos de uso'}
+                            labelLink={'https://google.com.br'}
+                            disable={disableForm}
+                            isRequired={false}
+                            displayInline={false}
+                            register={formData}
+                            errors={formErrors}>
+                        </DefaultCheckbox>
+                    </div>
+                    <div className="col-12 col-md-12 offset-top-10">
                         <InputRadio
                             id={'radio'}
                             type={'radio'}

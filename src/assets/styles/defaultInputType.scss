@@ -34,13 +34,14 @@ $disable-color-txt: #c1c1c1;
 // Label
 .default-label-input {
   font-size: 14px;
-  width: 100%;
   min-height: 21px;
   font-style: normal;
   font-weight: 500;
   line-height: 21px;
   color: $color-label;
   margin-bottom: 4px;
+  display: inline-block;
+  width: auto;
 
   .custom-tooltip-info {
     display: inline-block;
