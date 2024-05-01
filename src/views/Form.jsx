@@ -127,7 +127,7 @@ function Form() {
     };
 
     return (
-        <div className="col-12 box-rounded-white offset-top-20">
+        <div className="col-12 box-rounded-white offset-top-20 offset-bottom-30">
             <div>
                 <h2>Formulário de Exemplo</h2>
 
@@ -139,7 +139,7 @@ function Form() {
                 </div>
 
                 <form className="row">
-                    <div className="col-12 col-md-6 offset-top-10">
+                    <div className="col-12 col-md-6 offset-top-20">
                         <DefaultInput
                             id={'language'}
                             type={'select'}
@@ -159,7 +159,7 @@ function Form() {
                             setValue={setFormValue}>
                         </DefaultInput>
                     </div>
-                    <div className="col-12 col-md-6 offset-top-10">
+                    <div className="col-12 col-md-6 offset-top-20">
                         <TypeSelect
                             id={'options'}
                             type={'select'}
@@ -332,8 +332,9 @@ function Form() {
                             type={'checkbox'}
                             label={'Checkbox'}
                             labelCheckbox={'Confirmar'}
-                            subCheckboxLabel={'termos de uso'}
+                            subCheckboxLabel={'termos de uso.'}
                             labelLink={'https://google.com.br'}
+                            labelLinkTarget={'_blank'}
                             disable={disableForm}
                             isRequired={true}
                             displayInline={false}

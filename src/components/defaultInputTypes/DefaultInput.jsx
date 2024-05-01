@@ -15,7 +15,6 @@ const DefaultInput = ({
                           isRequired = false,
                           disable = false,
                           placeholder = '',
-                          invalidMsg = '',
                           mask = '',
                           customValidator,
 
