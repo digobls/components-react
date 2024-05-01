@@ -154,7 +154,7 @@ const DefaultInput = ({
                 </TypeTextarea>
             )}
 
-            {type === 'tags' && (
+            {(type === 'tags' || type === 'tag') && (
                 <TypeTag
                     id={id}
                     type={'tags'}

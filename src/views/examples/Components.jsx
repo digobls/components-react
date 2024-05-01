@@ -3,6 +3,7 @@ import TableExample from './TableExample';
 import SkeletonLoadingExample from './SkeletonLoadingExample';
 import DefaultButtonLoadingExample from './DefaultButtonLoadingExample';
 import DefaultEmptyBoxExample from './DefaultEmptyBoxExample';
+import DefaultInputsExample from './DefaultInputsExample';
 
 function Components() {
     return (
@@ -13,6 +14,8 @@ function Components() {
                 </div>
 
                 <div className="col-12 offset-bottom-20">
+                    <DefaultInputsExample></DefaultInputsExample>
+
                     <TableExample></TableExample>
 
                     <DefaultButtonLoadingExample></DefaultButtonLoadingExample>
