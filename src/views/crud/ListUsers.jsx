@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 import DefaultSimpleTable from '../../components/defaultSimpleTable/DefaultSimpleTable';
+import ModalAlert from '../../components/modalAlert/ModalAlert';
 
 const listHeaderTable = [
     {key: 'fullName', label: 'Usuário', sortable: false},
@@ -18,6 +19,7 @@ const listHeaderTable = [
 ];
 
 function ListUsers() {
+    const [showModal, setShowModal] = useState(false);
     const [listUser, setListUser] = useState([]);
     const [pagination, setPagination] = useState({
         currentPage: 1,
@@ -25,6 +27,12 @@ function ListUsers() {
         totalRecords: 220
     });
     const showUserApi = 'http://localhost:3002/users';
+    const [dataModal, setDataModal] = useState({
+        showDangerIcon: true,
+        showCancelBtn: true,
+        showConfirmBtn: true,
+        customTxtCancel: 'Cancelar'
+    });
 
     useEffect(() => {
         getUsers();
@@ -35,7 +43,7 @@ function ListUsers() {
             .get(showUserApi)
             .then((response) => {
                 setListUser(response.data);
-                setPagination({...pagination , totalRecords: response.data.length});
+                setPagination({...pagination, totalRecords: response.data.length});
             })
             .catch((err) => {
                 console.log(err);
@@ -45,15 +53,17 @@ function ListUsers() {
     const handleDataAction = (data) => {
         switch (data.action.type) {
             case 'delete':
-                checkRemove(data?.row);
+                setDataModal({
+                    ...dataModal,
+                    title: 'Aviso',
+                    description: 'Tem certeza que deseja excluir o usuário?',
+                    size: 'md',
+                    data: data,
+                    type: 'deleteUser'
+                });
+                openModal();
                 break
         }
-    }
-
-    const checkRemove = (data) => {
-        console.log('data', data);
-        // TODO:: Modal confirm aviso
-        removeUser(data);
     }
 
     const removeUser = (data) => {
@@ -71,6 +81,18 @@ function ListUsers() {
     const handlePagination = (data) => {
         console.log('handlePagination', data);
     }
+
+    const openModal = () => setShowModal(true);
+
+    const closeModal = () => setShowModal(false);
+
+    const handleConfirm = (data) => {
+        switch (data.type) {
+            case 'deleteUser':
+                removeUser(data.value);
+                break;
+        }
+    };
 
     return (
         <div className="list-user">
@@ -97,6 +119,12 @@ function ListUsers() {
                         onChangePagination={handlePagination}/>
                 )}
             </div>
+
+            <ModalAlert
+                show={showModal}
+                onHide={closeModal}
+                onConfirm={handleConfirm}
+                data={dataModal}/>
         </div>
     )
 }

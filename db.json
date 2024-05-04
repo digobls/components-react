@@ -1,37 +1,6 @@
 {
   "users": [
     {
-      "id": "2879",
-      "fullName": "Rodrigo Ferreira",
-      "email": "teste@hotmail.com",
-      "phone": "41999940776",
-      "documentNumber": "80547773021",
-      "dateBirthday": "1991-07-22",
-      "remuneration": 14000,
-      "languages": [
-        {
-          "name": "Português BR",
-          "id": "c4c7"
-        }
-      ],
-      "role": {
-        "id": "1",
-        "name": "Administrador"
-      },
-      "gender": {
-        "id": 2,
-        "name": "Feminino"
-      },
-      "tags": [
-        "Angular",
-        "Javascript"
-      ],
-      "description": "Sem descrição",
-      "terms": true,
-      "createAt": "2024-04-14T20:13:56.885Z"
-    },
-    {
-      "id": "2830",
       "fullName": "Andressa Ferreira",
       "email": "andressa@hotmail.com",
       "phone": "41999940776",
@@ -58,6 +27,7 @@
       ],
       "description": "Sem descrição",
       "terms": true,
+      "id": "2830",
       "createAt": "2024-04-14T20:13:56.885Z"
     },
     {

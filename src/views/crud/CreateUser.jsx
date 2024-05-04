@@ -4,9 +4,10 @@ import DefaultInput from '../../components/defaultInputTypes/DefaultInput';
 import DefaultButtonLoading from '../../components/defaultButtonLoading/DefaultButtonLoading';
 import axios from 'axios';
 import {useNavigate, useParams} from 'react-router-dom';
+import ModalAlert from '../../components/modalAlert/ModalAlert';
 
 function CreateUser() {
-    const { id } = useParams();
+    const {id} = useParams();
     const {
         register: formUser,
         setValue: setFormUser,
@@ -34,6 +35,12 @@ function CreateUser() {
     const showUserApi = 'http://localhost:3002/users';
     const [loadingData, setLoadingData] = useState(false);
     const [loadingSend, setLoadingSend] = useState(false);
+    const [showModal, setShowModal] = useState(false);
+    const [dataModal, setDataModal] = useState({
+        showSuccessIcon: true,
+        showCancelBtn: false,
+        showConfirmBtn: true
+    });
 
     const [listLanguages, setListLanguages] = useState([]);
     const [loadingList, setLoadingList] = useState(false);
@@ -58,7 +65,13 @@ function CreateUser() {
                 .post(showUserApi, getFormValues())
                 .then((response) => {
                     setLoadingSend(false);
-                    navigate('/usuarios');
+                    setDataModal({
+                        ...dataModal,
+                        title: 'Sucesso',
+                        description: 'Usuário cadastrado com sucesso.',
+                        size: 'md'
+                    });
+                    openModal();
                 })
                 .catch((err) => {
                     setLoadingSend(false);
@@ -79,7 +92,13 @@ function CreateUser() {
                 .put(`${showUserApi}/${id}`, dataSend)
                 .then((response) => {
                     setLoadingSend(false);
-                    navigate('/usuarios');
+                    setDataModal({
+                        ...dataModal,
+                        title: 'Sucesso',
+                        description: 'Usuário alterado com sucesso.',
+                        size: 'md'
+                    });
+                    openModal();
                 })
                 .catch((err) => {
                     setLoadingSend(false);
@@ -157,6 +176,10 @@ function CreateUser() {
     const cancel = () => {
         navigate('/usuarios');
     }
+
+    const openModal = () => setShowModal(true);
+
+    const closeModal = () => setShowModal(false);
 
     return (
         <div className="col-12 container-user">
@@ -355,6 +378,12 @@ function CreateUser() {
                             handleButtonClick={checkSend}>
                         </DefaultButtonLoading>
                     </div>
+
+                    <ModalAlert
+                        show={showModal}
+                        onHide={closeModal}
+                        onConfirm={() => { navigate('/usuarios') }}
+                        data={dataModal}/>
                 </div>
             </div>
         </div>
