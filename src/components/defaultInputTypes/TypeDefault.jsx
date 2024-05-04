@@ -8,6 +8,7 @@ const TypeDefault = ({
                          type = 'text',
                          id = '',
                          label = '',
+                         showLabel = true,
                          isRequired = false,
                          disable = false,
                          placeholder = '',
@@ -47,7 +48,9 @@ const TypeDefault = ({
 
     return (
         <div className="default-input-type">
-            <DefaultLabel id={id} label={label} isRequired={isRequired}/>
+            {showLabel && (
+                <DefaultLabel id={id} label={label} isRequired={isRequired}/>
+            )}
 
             <input
                 id={id}

@@ -7,9 +7,9 @@ import DefaultNavbar from './components/defaultNavbar/DefaultNavbar';
 import DefaultSidebar from './components/defaultSidebar/DefaultSidebar';
 import Components from './views/examples/Components';
 import NotFound from './views/NotFound';
-import ListUsers from './views/ListUsers';
+import ListUsers from './views/crud/ListUsers';
 import Form from './views/Form';
-import TesteForm from "./views/TesteForm";
+import CreateUser from './views/crud/CreateUser';
 
 function App() {
     const [menuIsOpen, setMenuIsOpen] = useState(true);
@@ -30,8 +30,9 @@ function App() {
                             Formulário
                             <Route path="/componentes" element={<Components />} />
                             <Route path="/form" element={<Form />} />
-                            <Route path="/teste" element={<TesteForm />} />
                             <Route path="/usuarios" element={<ListUsers />} />
+                            <Route path="/usuarios/cadastro" element={<CreateUser />} />
+                            <Route path="/usuarios/editar/:id" element={<CreateUser />} />
                             <Route path="*" element={<NotFound />} />
                         </Routes>
                     </div>

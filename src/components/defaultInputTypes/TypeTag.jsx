@@ -6,6 +6,7 @@ import ErrorMessage from "./ErrorMessage";
 const TypeTag = ({
                      id = '',
                      label = '',
+                     showLabel = true,
                      isRequired = false,
                      disable = false,
                      placeholder = '',
@@ -58,7 +59,9 @@ const TypeTag = ({
 
     return (
         <div className="default-input-type">
-            <DefaultLabel id={id} label={label} isRequired={isRequired}/>
+            {showLabel && (
+                <DefaultLabel id={id} label={label} isRequired={isRequired}/>
+            )}
 
             <div className={`custom-input-tag ${disable ? 'disable-input-tag' : ''}`}>
                 {listTags.map((tag, index) => (

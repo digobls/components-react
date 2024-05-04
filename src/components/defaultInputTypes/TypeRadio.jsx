@@ -5,6 +5,7 @@ import DefaultLabel from './DefaultLabel';
 const TypeRadio = ({
                        id = '',
                        label = '',
+                       showLabel = true,
                        radioItems = [],
                        bindValueRadio = '',
                        displayInline = false,
@@ -39,7 +40,9 @@ const TypeRadio = ({
 
     return (
         <div className="default-input-type">
-            <DefaultLabel id={id} label={label} isRequired={isRequired}/>
+            {showLabel && (
+                <DefaultLabel id={id} label={label} isRequired={isRequired}/>
+            )}
 
             <div className="custom-radio">
                 <div className={disable ? 'disabled' : ''}>

@@ -7,6 +7,7 @@ import {RiArrowDropDownLine, RiCloseLine} from '@remixicon/react';
 const TypeSelect = ({
                         id = '',
                         label = '',
+                        showLabel = true,
                         isRequired = false,
                         disable = false,
                         placeholder = '',
@@ -142,7 +143,10 @@ const TypeSelect = ({
 
     return (
         <div className="default-input-type">
-            <DefaultLabel id={id} label={label} isRequired={isRequired}/>
+            {showLabel && (
+                <DefaultLabel id={id} label={label} isRequired={isRequired}/>
+            )}
+
             <input id={id} name={id} type="text"
                    disabled={disable} {...register(id, {required: isRequired ? invalidMsg : false})}
                    className="input-hidden"/>

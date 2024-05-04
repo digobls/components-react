@@ -6,6 +6,7 @@ import ErrorMessage from './ErrorMessage';
 const TypeTextarea = ({
                           id = '',
                           label = '',
+                          showLabel = true,
                           isRequired = false,
                           disable = false,
                           placeholder = '',
@@ -15,7 +16,9 @@ const TypeTextarea = ({
                       }) => {
     return (
         <div className="default-input-type">
-            <DefaultLabel id={id} label={label} isRequired={isRequired}/>
+            {showLabel && (
+                <DefaultLabel id={id} label={label} isRequired={isRequired}/>
+            )}
 
             <textarea
                 id={id}

@@ -4,24 +4,25 @@ import DefaultLabel from './DefaultLabel';
 import ErrorMessage from './ErrorMessage';
 
 const TypeCheckbox = ({
-                             type = 'text',
-                             id = '',
-                             label = '',
-                             isRequired = false,
-                             disable = false,
-                             placeholder = '',
-                             displayInline = false,
-                             labelCheckbox = '',
-                             labelLinkTarget = '',
-                             labelLink = '',
-                             subCheckboxLabel = '',
-                             checkItems  = [],
-                             invalidMsg = 'Campo obrigatório!',
-                             register,
-                             errors,
-                             watch,
-                             setValue
-                         }) => {
+                          type = 'text',
+                          id = '',
+                          label = '',
+                          showLabel = true,
+                          isRequired = false,
+                          disable = false,
+                          placeholder = '',
+                          displayInline = false,
+                          labelCheckbox = '',
+                          labelLinkTarget = '',
+                          labelLink = '',
+                          subCheckboxLabel = '',
+                          checkItems = [],
+                          invalidMsg = 'Campo obrigatório!',
+                          register,
+                          errors,
+                          watch,
+                          setValue
+                      }) => {
     const [listCheckbox, setListCheckbox] = useState(checkItems);
 
     useEffect(() => {
@@ -53,13 +54,16 @@ const TypeCheckbox = ({
                 type="checkbox"
                 className="input-checkbox"
             />
-            <label htmlFor={item?.id + index} aria-labelledby={item?.id + index} className="label-checkbox">{item?.name}</label>
+            <label htmlFor={item?.id + index} aria-labelledby={item?.id + index}
+                   className="label-checkbox">{item?.name}</label>
         </div>
     )), [listCheckbox, disable]);
 
     return (
         <div className="default-input-type">
-            <DefaultLabel id={id} label={label} isRequired={isRequired}/>
+            {showLabel && (
+                <DefaultLabel id={id} label={label} isRequired={isRequired}/>
+            )}
 
             {type === 'switch' && (
                 <div className={"custom-switch"}>
