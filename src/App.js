@@ -12,7 +12,7 @@ import Form from './views/Form';
 import CreateUser from './views/crud/CreateUser';
 
 function App() {
-    const [menuIsOpen, setMenuIsOpen] = useState(true);
+    const [menuIsOpen, setMenuIsOpen] = useState(false);
 
     const handleMenuStatusChange = (isExpanded) => {
         setMenuIsOpen(isExpanded);
@@ -24,7 +24,7 @@ function App() {
                 <DefaultNavbar></DefaultNavbar>
                 <DefaultSidebar onMenuStatusChange={handleMenuStatusChange}/>
 
-                <div className={`container-data ${menuIsOpen ? 'menu-open' : 'menu-close'}`}>
+                <div className={`container-data ${menuIsOpen ? 'menu-close' : 'menu-open'}`}>
                     <div className="container">
                         <Routes>
                             Formulário

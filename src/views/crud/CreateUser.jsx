@@ -54,64 +54,77 @@ function CreateUser() {
         {id: 0, name: 'Outro'},
     ];
 
-    const createUser = async () => {
-        const isValidForm = await triggerForm();
-        console.log('isValidForm', isValidForm);
+    const createUser = () => {
         console.log('Valor do formulário ->', getFormValues());
-
-        if (isValidForm && !loadingSend) {
-            setLoadingSend(true);
-            axios
-                .post(showUserApi, getFormValues())
-                .then((response) => {
-                    setLoadingSend(false);
-                    setDataModal({
-                        ...dataModal,
-                        title: 'Sucesso',
-                        description: 'Usuário cadastrado com sucesso.',
-                        size: 'md'
-                    });
-                    openModal();
-                })
-                .catch((err) => {
-                    setLoadingSend(false);
-                    console.log(err);
+        axios
+            .post(showUserApi, getFormValues())
+            .then((response) => {
+                setLoadingSend(false);
+                setDataModal({
+                    ...dataModal,
+                    showSuccessIcon: true,
+                    showWarningIcon: false,
+                    showConfirmBtn: true,
+                    showCancelBtn: false,
+                    title: 'Sucesso',
+                    description: 'Usuário cadastrado com sucesso.',
+                    size: 'md'
                 });
-        }
+                openModal();
+            })
+            .catch((err) => {
+                setLoadingSend(false);
+                console.log(err);
+            });
     }
 
-    const changeUser = async () => {
-        const isValidForm = await triggerForm();
-        console.log('isValidForm', isValidForm);
+    const changeUser = () => {
         console.log('Valor do formulário ->', getFormValues());
 
-        if (isValidForm && !loadingSend) {
-            const dataSend = {...getFormValues(), id};
-            setLoadingSend(true);
-            axios
-                .put(`${showUserApi}/${id}`, dataSend)
-                .then((response) => {
-                    setLoadingSend(false);
-                    setDataModal({
-                        ...dataModal,
-                        title: 'Sucesso',
-                        description: 'Usuário alterado com sucesso.',
-                        size: 'md'
-                    });
-                    openModal();
-                })
-                .catch((err) => {
-                    setLoadingSend(false);
-                    console.log(err);
+        const dataSend = {...getFormValues(), id};
+        setLoadingSend(true);
+        axios
+            .put(`${showUserApi}/${id}`, dataSend)
+            .then((response) => {
+                setLoadingSend(false);
+                setDataModal({
+                    ...dataModal,
+                    title: 'Sucesso',
+                    description: 'Usuário alterado com sucesso.',
+                    size: 'md'
                 });
-        }
+                openModal();
+            })
+            .catch((err) => {
+                setLoadingSend(false);
+                console.log(err);
+            });
     }
 
-    const checkSend = () => {
-        if (id) {
-            changeUser().then();
+    const checkSend = async () => {
+        const isValidForm = await triggerForm();
+        console.log('isValidForm', isValidForm);
+        if (isValidForm) {
+            if (!loadingSend) {
+                setLoadingSend(true);
+                if (id) {
+                    changeUser();
+                } else {
+                    createUser();
+                }
+            }
         } else {
-            createUser().then();
+            setDataModal({
+                ...dataModal,
+                showSuccessIcon: false,
+                showWarningIcon: true,
+                showConfirmBtn: false,
+                showCancelBtn: true,
+                title: 'Aviso',
+                description: 'Preenchar todos os campos obrigatórios para continuar.',
+                size: 'md'
+            });
+            openModal();
         }
     }
 
@@ -187,7 +200,6 @@ function CreateUser() {
                 <div className="row">
                     <div className="col-12">
                         <h1 className="title">{id ? 'Editar usuário' : 'Cadastro de usuário'}</h1>
-                        <p className="description">Aqui você adiciona e configura os usuários</p>
                     </div>
 
                     <div className="col-12 col-md-6 offset-top-20">
@@ -382,7 +394,9 @@ function CreateUser() {
                     <ModalAlert
                         show={showModal}
                         onHide={closeModal}
-                        onConfirm={() => { navigate('/usuarios') }}
+                        onConfirm={() => {
+                            navigate('/usuarios')
+                        }}
                         data={dataModal}/>
                 </div>
             </div>
